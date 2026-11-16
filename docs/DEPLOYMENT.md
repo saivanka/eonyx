@@ -10,17 +10,17 @@ npm run build:web
 
 ## Vercel (current production host)
 
-Live: https://onyx-marketplace.vercel.app
+Live: https://eonyx.vercel.app
 
 Deploy the built folder:
 
 ```bash
-npx vercel deploy dist --prod --name onyx-marketplace
+npx vercel deploy dist --prod
 ```
 
 - The first run asks you to log in (`npx vercel login`) and links the project.
 - `scripts/pwa-postbuild.mjs` copies `vercel.json` into `dist/`, so the rewrites ship with the build.
-- `vercel.json` rewrites every path to `/index.html` and sets `Cache-Control: no-cache` on `sw.js`.
+- `vercel.json` rewrites every path to `/index.html` and sets `Cache-Control: no-cache` on `sw.js`. The rewrite pattern is `/:path*`. The older `/(.*)` pattern returned 404 for deep links on Vercel.
 
 Turn on two-factor authentication for the Vercel account at https://vercel.com/account/settings/authentication.
 

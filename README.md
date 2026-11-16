@@ -4,7 +4,7 @@ eonyx is a fashion marketplace built with **Expo (SDK 58)**, **Expo Router** and
 
 It follows the screen flow of the *Onyx — Fashion Marketplace App | UI/UX Case Study*: a Discover feed with shoppable looks, a four-step checkout with one all-in total, guest checkout with just an email, cash on delivery preselected, live order tracking, saved items and dark mode.
 
-**Live web app:** https://onyx-marketplace.vercel.app
+**Live web app:** https://eonyx.vercel.app
 
 > The catalogue, orders and checkout are local prototype data. No payment is taken and nothing is sent to a server.
 
@@ -87,7 +87,7 @@ The fastest route is Vercel:
 
 ```bash
 npm run build:web
-npx vercel deploy dist --prod --name onyx-marketplace
+npx vercel deploy dist --prod
 ```
 
 The first run asks you to log in and link the project. Other static hosts (Netlify, Cloudflare Pages, GitHub Pages) work too. See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for each option and for SPA routing rules.
