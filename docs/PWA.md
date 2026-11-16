@@ -1,63 +1,56 @@
-# eonyx as a Progressive Web App
+# eonyx as a web app (PWA)
 
-eonyx ships as a PWA: a web build that can be installed to a phone or desktop, opens full screen, and keeps working when the network drops.
+The web version of eonyx can be installed like an app. Once installed, it opens full screen, has its own icon, and still loads when the connection drops.
 
-## What a user sees
+Live: https://eonyx.vercel.app
 
-| Platform | Install steps | Result |
-| --- | --- | --- |
-| iPhone (Safari) | Share → **Add to Home Screen** | Home-screen icon, full-screen app, no browser bar |
-| Android (Chrome) | ⋮ → **Install app** | App drawer entry and icon, full-screen app |
-| Desktop (Chrome / Edge) | Install icon in the address bar | Standalone window |
+## Installing it
 
-Install requires HTTPS, or `localhost` during development.
+- **iPhone:** open the link in Safari, tap Share, then tap **Add to Home Screen**.
+- **Android:** open the link in Chrome, tap the menu (⋮), then tap **Install app**.
+- **Desktop Chrome or Edge:** click the install icon in the address bar.
 
-## What is in the build
+Installing needs HTTPS. The only exception is `localhost` during development.
 
-| File | Purpose |
+## What's in the build
+
+| File | What it does |
 | --- | --- |
-| `public/manifest.webmanifest` | Name, short name, colours, `display: standalone`, icons (192, 512 and a maskable 512) |
-| `public/icon-*.png`, `apple-touch-icon.png`, `favicon.png` | App icons generated from the EONYX wordmark |
-| `public/sw.js` | Service worker: caching and offline support |
-| `scripts/pwa-postbuild.mjs` | Adds the manifest link, iOS home-screen tags and service worker registration to `dist/index.html` |
-| `app.json` → `web` | Expo's web settings (`output: single`, theme colour, background colour) |
+| `public/manifest.webmanifest` | The app name, colours, icons and display mode |
+| `public/icon-*.png`, `apple-touch-icon.png`, `favicon.png` | Icons, made from the EONYX wordmark |
+| `public/sw.js` | The service worker that handles offline loading |
+| `scripts/pwa-postbuild.mjs` | Adds the PWA tags and the service worker to the built HTML |
 
-Expo's exporter does not write PWA tags, so `pwa-postbuild.mjs` adds them after each `expo export`.
+Expo's exporter doesn't write PWA tags, so the post-build script adds them after every build.
 
-## Caching strategy (`public/sw.js`)
+## How offline loading works
 
-| Request | Strategy | Why |
-| --- | --- | --- |
-| Page navigations (`/`, `/product/p1`, …) | Network first, fall back to the cached `index.html` | Fresh content when online, the app still opens offline |
-| `/_expo/*` JavaScript bundles | Cache first | File names include a content hash, so they never change |
-| Icons, fonts and other static files | Stale while revalidate | Fast, and updated in the background |
-| Product photos (cross-origin images) | Stale while revalidate | Photos appear again offline after first view |
+| What is requested | How it's served |
+| --- | --- |
+| A page (for example `/product/p1`) | From the network when online. If offline, the app shell from the cache is used. |
+| Built JavaScript (`/_expo/...`) | From the cache first. File names change with each build, so the cache is safe. |
+| Icons and fonts | From the cache, refreshed in the background. |
+| Product photos | From the cache once they've been seen. |
 
-The worker's cache names start with `CACHE_VERSION` (currently `eonyx-v1`). Old caches are deleted on activate.
+## Shipping an update
 
-### Updating the installed app
+1. Make your change and run `npm run build:web`.
+2. Redeploy (see [DEPLOYMENT.md](DEPLOYMENT.md)).
+3. People get the new version the next time they open the app.
 
-1. Change the code, then run `npm run build:web` and redeploy.
-2. Users get the new version the next time they open the app. The worker updates in the background.
-3. If you change the shell (`index.html` structure or precached files), bump `CACHE_VERSION` in `public/sw.js`.
+If you change the app shell, bump `CACHE_VERSION` in `public/sw.js` so old caches are cleared.
 
-## Testing locally
+## Testing it locally
 
 ```bash
 npm run build:web
-npm run serve:web       # http://localhost:5057
+npm run serve:web   # http://localhost:5057
 ```
 
-Chrome DevTools → **Application** tab:
+In Chrome DevTools, open the **Application** tab:
 
-- **Manifest:** name, icons and install criteria should show no errors.
-- **Service Workers:** `sw.js` should be "activated and running".
-- **Offline:** tick "Offline" and reload. The app should still open.
+- **Manifest** should show no errors.
+- **Service Workers** should show `sw.js` as active.
+- Tick **Offline** and reload. The app should still open.
 
-Note: the in-app browser preview in some tools cannot register service workers. Test in Chrome or Safari.
-
-## Changing PWA details
-
-- **Name, colours, display mode:** `public/manifest.webmanifest` (and `web` in `app.json` for Expo's own metadata).
-- **Icon artwork:** regenerate the PNGs in `public/` and `assets/icon.png`. Keep the maskable icon's important content within the centre 80%.
-- **Extra head tags:** edit `PWA_HEAD` in `scripts/pwa-postbuild.mjs`.
+Some in-app browsers can't register service workers. Test in Chrome or Safari.

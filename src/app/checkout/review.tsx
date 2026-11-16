@@ -32,7 +32,7 @@ export default function ReviewStep() {
     <StepFrame
       step={3}
       title="Check and place"
-      body="This is the total you will pay. Nothing is added later."
+      body="This is the total you will pay. Nothing gets added later."
       footer={
         <View style={{ gap: space.sm }}>
           <View style={styles.totalRow}>

@@ -15,21 +15,21 @@ const slides = [
     image: looks[0].image,
     overline: 'Shop the look',
     title: 'Every look, one tap\nto the bag.',
-    body: 'Curated outfits from independent labels and the names you already love.',
+    body: 'Outfits from independent labels and the brands you already know.',
   },
   {
     id: 's2',
     image: looks[2].image,
-    overline: 'Calm checkout',
-    title: 'Four steps.\nOne honest total.',
-    body: 'No surprise fees. Cash on delivery is ready to go, and guest checkout needs only an email.',
+    overline: 'Quick checkout',
+    title: 'Four short steps.\nOne clear total.',
+    body: 'No hidden fees. Pay on delivery if you prefer, and check out as a guest with just your email.',
   },
   {
     id: 's3',
     image: photo('photo-1483985988355-763728e1935b'),
     overline: 'Free returns',
     title: 'Courier pickup\nfrom your door.',
-    body: 'Returns are free, and your refund amount is shown before you buy.',
+    body: 'Returns are free. You see the refund amount before you buy.',
   },
 ];
 

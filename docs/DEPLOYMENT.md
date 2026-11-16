@@ -1,55 +1,54 @@
 # Deploying eonyx
 
-The web build is static files in `dist/`. Any static host works, as long as it serves `index.html` for unknown paths (SPA routing) and serves `sw.js` over HTTPS.
+The web build is a folder of static files in `dist/`. Any static host can serve it, as long as unknown paths fall back to `index.html` and `sw.js` is served over HTTPS.
 
-Build first, every time:
+Always build before you deploy:
 
 ```bash
 npm run build:web
 ```
 
-## Vercel (current production host)
+## Vercel (current host)
 
 Live: https://eonyx.vercel.app
-
-Deploy the built folder:
 
 ```bash
 npx vercel deploy dist --prod
 ```
 
-- The first run asks you to log in (`npx vercel login`) and links the project.
-- `scripts/pwa-postbuild.mjs` copies `vercel.json` into `dist/`, so the rewrites ship with the build.
-- `vercel.json` rewrites every path to `/index.html` and sets `Cache-Control: no-cache` on `sw.js`. The rewrite pattern is `/:path*`. The older `/(.*)` pattern returned 404 for deep links on Vercel.
+The first time, the CLI asks you to log in and link the project. After that, each deploy updates the live site.
 
-Turn on two-factor authentication for the Vercel account at https://vercel.com/account/settings/authentication.
+- `scripts/pwa-postbuild.mjs` copies `vercel.json` into `dist/`, so the routing rules are deployed with the build.
+- `vercel.json` sends every path to `index.html`, which is what makes links like `/product/p1` work. It uses the `/:path*` pattern. The older `/(.*)` pattern returned 404 for deep links.
+- `sw.js` is served with `Cache-Control: no-cache`, so browsers pick up new versions.
+
+Turn on two-factor authentication for your Vercel account at https://vercel.com/account/settings/authentication.
 
 ## Netlify
 
-Option A, drag and drop: go to https://app.netlify.com/drop and drop the `dist/` folder.
-
-Option B, CLI:
+Drag the `dist/` folder onto https://app.netlify.com/drop, or run:
 
 ```bash
 npx netlify-cli deploy --dir dist --prod
 ```
 
-`public/_redirects` is copied into `dist/` and provides the SPA rewrite (`/* /index.html 200`).
+The `_redirects` file in `public/` is copied into `dist/` and handles the routing.
 
-## GitHub Pages or any other static host
+## Other static hosts
 
-- Upload the contents of `dist/`.
-- The app uses root-relative URLs (`/_expo/...`, `/manifest.webmanifest`), so it must be served from the domain root, not a sub-path such as `username.github.io/repo`.
-- Configure a rewrite that sends unknown paths to `index.html`, or deep links will 404. GitHub Pages does not support this natively. Use Netlify or Vercel instead.
+Upload the contents of `dist/`. Two things to check:
 
-## After every deploy
+- The app uses root paths such as `/_expo/...`, so it has to be served from the domain root, not a sub-folder like `username.github.io/repo`.
+- Unknown paths must return `index.html`. GitHub Pages can't do this, so use Netlify or Vercel for deep links.
 
-1. Open the live URL in Chrome and check the page loads.
-2. DevTools → Application → Manifest: no errors.
-3. DevTools → Application → Service Workers: `sw.js` activated.
-4. Open a deep link such as `/product/p1` directly.
+## After each deploy
+
+1. Open the live link and check the home page loads.
+2. In DevTools, check **Application → Manifest** for errors.
+3. Check that **Application → Service Workers** shows `sw.js` as active.
+4. Open a deep link, such as `/product/p1`, directly.
 5. On a phone, install the app and open it from the home screen.
 
-## Native builds (later)
+## Native builds
 
-The app can also be built for the App Store and Google Play with EAS (`npx eas-cli build`). That requires an Expo account and, for iOS, an Apple Developer account. It is separate from the web deployment.
+The iPhone and Android apps are built separately, with EAS (`npx eas-cli build`). That needs an Expo account, and an Apple Developer account for iOS. It doesn't affect the web deploy.

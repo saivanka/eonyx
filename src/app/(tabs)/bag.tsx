@@ -20,7 +20,7 @@ export default function Bag() {
         <EmptyState
           icon="bag-handle-outline"
           title="Your bag is empty"
-          body="Pieces you add will wait here with one honest total."
+          body="Anything you add to your bag shows up here."
           action={<Button title="Browse Discover" variant="secondary" onPress={() => router.navigate('/(tabs)')} />}
         />
       </Screen>

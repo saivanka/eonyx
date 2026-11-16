@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { FlatList, StyleSheet, Text, View, } from 'react-native';
 import { Image } from 'expo-image';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useLocalSearchParams } from 'expo-router';
 import { Chip, EmptyState, Header, Screen } from '@/components/ui';
 import { ProductCard } from '@/components/ProductCard';
@@ -42,6 +43,7 @@ export default function CategoryScreen() {
             {category ? (
               <View style={[styles.hero, { borderRadius: radius.xl, backgroundColor: colors.surfaceAlt }]}>
                 <Image source={{ uri: category.image }} style={StyleSheet.absoluteFill} contentFit="cover" transition={250} />
+                <LinearGradient colors={['transparent', 'rgba(0,0,0,0.6)']} locations={[0.35, 1]} style={StyleSheet.absoluteFill} />
                 <View style={styles.heroCopy}>
                   <Text style={[type.overline, { color: '#D9B47E' }]}>THE EDIT</Text>
                   <Text style={[type.h1, { color: '#FFFFFF' }]}>{category.name}</Text>

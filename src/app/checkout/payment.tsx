@@ -43,7 +43,7 @@ export default function PaymentStep() {
     <StepFrame
       step={2}
       title="How would you like to pay?"
-      body="Cash on delivery is preselected because it is the simplest way to start."
+      body="Cash on delivery is selected by default. It is the easiest way to start."
       footer={<FooterCTA title="Review order" onPress={() => router.push('/checkout/review')} icon="arrow-forward" />}
     >
       <View style={{ paddingHorizontal: gutter, paddingTop: space.lg, gap: space.md }}>
