@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "Onyx",
+    "slug": "onyx-marketplace",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.onyx.marketplace"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false,
+      "package": "com.onyx.marketplace"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "single",
+      "favicon": "./public/favicon.png",
+      "name": "Onyx — Fashion Marketplace",
+      "shortName": "Onyx",
+      "description": "Shop independent labels and the names you love. One calm checkout, one honest total.",
+      "lang": "en",
+      "display": "standalone",
+      "orientation": "portrait",
+      "themeColor": "#121212",
+      "backgroundColor": "#F6F4F1",
+      "startUrl": "/"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font",
+      [
+        "expo-image"
+      ]
+    ],
+    "scheme": "onyx",
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
