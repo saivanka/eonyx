@@ -1,4 +1,4 @@
-// Design tokens — Onyx design system (light + dark).
+// Design tokens — eonyx design system (light + dark).
 // Every colour, radius and type size in the app comes from here.
 
 export const palette = {

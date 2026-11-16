@@ -1,4 +1,4 @@
-# Deploying Onyx
+# Deploying eonyx
 
 The web build is static files in `dist/`. Any static host works, as long as it serves `index.html` for unknown paths (SPA routing) and serves `sw.js` over HTTPS.
 

@@ -1,6 +1,6 @@
-# Onyx — Fashion Marketplace
+# eonyx — Fashion Marketplace
 
-Onyx is a fashion marketplace built with **Expo (SDK 58)**, **Expo Router** and **React Native**. It runs on iPhone and Android through Expo Go, and on any browser as an installable **Progressive Web App (PWA)**.
+eonyx is a fashion marketplace built with **Expo (SDK 58)**, **Expo Router** and **React Native**. It runs on iPhone and Android through Expo Go, and on any browser as an installable **Progressive Web App (PWA)**.
 
 It follows the screen flow of the *Onyx — Fashion Marketplace App | UI/UX Case Study*: a Discover feed with shoppable looks, a four-step checkout with one all-in total, guest checkout with just an email, cash on delivery preselected, live order tracking, saved items and dark mode.
 
@@ -40,8 +40,8 @@ Further guides:
 **Install and start**
 
 ```bash
-git clone https://github.com/<your-username>/onyx-marketplace.git
-cd onyx-marketplace
+git clone https://github.com/saivanka/eonyx.git
+cd eonyx
 npm install
 npx expo start
 ```
@@ -68,7 +68,7 @@ The web app can be opened in any browser and installed to the home screen.
 - **Android:** open the link in Chrome, tap **⋮ → Install app** (or **Add to Home screen**).
 - **Desktop Chrome / Edge:** click the install icon in the address bar.
 
-Once installed it opens full screen, has the Onyx icon, and the app shell works offline. Details are in [docs/PWA.md](docs/PWA.md).
+Once installed it opens full screen, has the eonyx icon, and the app shell works offline. Details are in [docs/PWA.md](docs/PWA.md).
 
 To build and preview it locally:
 
@@ -119,7 +119,7 @@ The first run asks you to log in and link the project. Other static hosts (Netli
 ## Project structure
 
 ```
-onyx-marketplace/
+eonyx/
 ├── src/
 │   ├── app/                 Expo Router routes. Each file is a screen; _layout.tsx files define navigators.
 │   │   ├── _layout.tsx      Root stack, font loading, providers, web phone-width column

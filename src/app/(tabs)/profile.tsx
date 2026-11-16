@@ -96,7 +96,7 @@ export default function Profile() {
           <Divider inset />
           <Row icon="help-circle-outline" title="Help" subtitle="Delivery, sizing and returns" />
           <Divider inset />
-          <Row icon="sparkles-outline" title="Welcome tour" subtitle="See how Onyx works" onPress={() => router.push('/welcome')} />
+          <Row icon="sparkles-outline" title="Welcome tour" subtitle="See how eonyx works" onPress={() => router.push('/welcome')} />
         </View>
 
         {user ? (

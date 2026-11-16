@@ -81,7 +81,7 @@ export default function Welcome() {
 
       <SafeAreaView edges={['top', 'bottom']} style={styles.overlay} pointerEvents="box-none">
         <View style={styles.topBar} pointerEvents="box-none">
-          <Text style={styles.wordmark}>ONYX</Text>
+          <Text style={styles.wordmark}>EONYX</Text>
           <Pressable onPress={() => router.replace('/(tabs)')} hitSlop={12} accessibilityRole="button">
             <Text style={[type.labelStrong, { color: 'rgba(255,255,255,0.8)' }]}>Skip</Text>
           </Pressable>

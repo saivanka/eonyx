@@ -1,11 +1,11 @@
-// Onyx service worker — makes the web app installable and usable offline.
+// eonyx service worker — makes the web app installable and usable offline.
 // Strategy:
 //   • Navigations (any page URL)  → network first, fall back to the cached app shell.
 //   • Hashed build assets (/_expo) → cache first (file names change on every build).
 //   • Icons, fonts and product photos → stale-while-revalidate.
 // Bump CACHE_VERSION whenever the shell changes to force clients to refresh.
 
-const CACHE_VERSION = 'onyx-v1';
+const CACHE_VERSION = 'eonyx-v1';
 const SHELL_CACHE = `${CACHE_VERSION}-shell`;
 const ASSET_CACHE = `${CACHE_VERSION}-assets`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;

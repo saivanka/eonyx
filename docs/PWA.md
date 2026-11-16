@@ -1,6 +1,6 @@
-# Onyx as a Progressive Web App
+# eonyx as a Progressive Web App
 
-Onyx ships as a PWA: a web build that can be installed to a phone or desktop, opens full screen, and keeps working when the network drops.
+eonyx ships as a PWA: a web build that can be installed to a phone or desktop, opens full screen, and keeps working when the network drops.
 
 ## What a user sees
 
@@ -17,7 +17,7 @@ Install requires HTTPS, or `localhost` during development.
 | File | Purpose |
 | --- | --- |
 | `public/manifest.webmanifest` | Name, short name, colours, `display: standalone`, icons (192, 512 and a maskable 512) |
-| `public/icon-*.png`, `apple-touch-icon.png`, `favicon.png` | App icons generated from the ONYX wordmark |
+| `public/icon-*.png`, `apple-touch-icon.png`, `favicon.png` | App icons generated from the EONYX wordmark |
 | `public/sw.js` | Service worker: caching and offline support |
 | `scripts/pwa-postbuild.mjs` | Adds the manifest link, iOS home-screen tags and service worker registration to `dist/index.html` |
 | `app.json` → `web` | Expo's web settings (`output: single`, theme colour, background colour) |
@@ -33,7 +33,7 @@ Expo's exporter does not write PWA tags, so `pwa-postbuild.mjs` adds them after 
 | Icons, fonts and other static files | Stale while revalidate | Fast, and updated in the background |
 | Product photos (cross-origin images) | Stale while revalidate | Photos appear again offline after first view |
 
-The worker's cache names start with `CACHE_VERSION` (currently `onyx-v1`). Old caches are deleted on activate.
+The worker's cache names start with `CACHE_VERSION` (currently `eonyx-v1`). Old caches are deleted on activate.
 
 ### Updating the installed app
 
